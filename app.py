@@ -14,12 +14,12 @@ async def run_memory_chat():
     print("Initailizing chat....")
 
     client = MCPClient(config_file)
-    llm = ChatGroq(model='llama-3.3-70b-versatile')
+    llm = ChatGroq(model='llama-3.3-70b-versatile',tool_choice='none')
 
     agent = MCPAgent(
         llm=llm,
         client=client,
-        max_steps=15,
+        max_steps=5,
         memory_enabled=True,
     )
 
