@@ -3,10 +3,11 @@ import asyncio
 from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 from mcp_use import MCPAgent,MCPClient
+from langchain_nvidia_ai_endpoints import ChatNVIDIA
 
 async def run_memory_chat():
     load_dotenv()
-    os.environ['GROQ_API_KEY'] = os.getenv('GROQ_API_KEY')
+    os.environ['NVIDIA_API_KEY'] = os.getenv('NVIDIA_API_KEY')
 
 
     config_file = 'browser_mcp.json'
@@ -14,7 +15,7 @@ async def run_memory_chat():
     print("Initailizing chat....")
 
     client = MCPClient(config_file)
-    llm = ChatGroq(model='llama-3.3-70b-versatile',tool_choice='none')
+    llm = ChatNVIDIA(model="meta/llama-3.3-70b-instruct")
 
     agent = MCPAgent(
         llm=llm,
